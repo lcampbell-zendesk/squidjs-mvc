@@ -1,5 +1,3 @@
-import lf from 'lovefield';
-
 export default async function seed(db) {
   let item = db.getSchema().table("Item");
 

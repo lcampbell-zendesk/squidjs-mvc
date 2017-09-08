@@ -1,11 +1,15 @@
-import lf from 'lovefield';
+import { Type, Order } from 'lovefield';
 
-export default function createItem(schemaBuilder) {
-  return schemaBuilder.createTable('Item').
-           addColumn('id', lf.Type.INTEGER).
-           addColumn('description', lf.Type.STRING).
-           addColumn('deadline', lf.Type.DATE_TIME).
-           addColumn('done', lf.Type.BOOLEAN).
-           addPrimaryKey(['id']).
-           addIndex('idxDeadline', ['deadline'], false, lf.Order.DESC);
+export default function schema() {
+  const schemaBuilder = lf.schema.create('todo', 1);
+
+  schemaBuilder.createTable('Item').
+    addColumn('id', Type.INTEGER).
+    addColumn('description', Type.STRING).
+    addColumn('deadline', Type.DATE_TIME).
+    addColumn('done', Type.BOOLEAN).
+    addPrimaryKey(['id']).
+    addIndex('idxDeadline', ['deadline'], false, Order.DESC);
+
+  return schemaBuilder;
 }

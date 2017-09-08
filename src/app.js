@@ -1,19 +1,12 @@
-import 'babel-core/register';
-import 'babel-polyfill';
-import lf from 'lovefield';
-import createItem from './schema';
+import schema from './schema';
 import seed from './seed';
 import domvm from 'domvm';
 
 async function roundTrip() {
-  const schemaBuilder = lf.schema.create('todo', 1);
-  createItem(schemaBuilder);
-
-  const db = await schemaBuilder.connect();
-  const item = db.getSchema().table("Item");
-
+  const db = await schema().connect();
   await seed(db);
 
+  const item = db.getSchema().table("Item");
   const results = await db.select().from(item).where(item.done.eq(false)).exec();
 
   results.forEach(function(row) {

@@ -18,19 +18,19 @@ async function main() {
   // LOVEFIELD
   const db = await schema().connect();
   const item = db.getSchema().table("Item");
-  const query = db.select().from(item).where(item.done.eq(false));
+  const todo = db.select().from(item).where(item.done.eq(false));
 
   // DOMVM
   const vm = domvm.createView({render: ItemList}, []).mount(document.body);
 
   // BOTH
   async function updateDomvm(changes) {
-    const results = await query.exec();
+    const results = await todo.exec();
     vm.update(results, false);
     console.log(results);
   }
 
-  db.observe(query, updateDomvm);
+  db.observe(todo, updateDomvm);
 
   seed(db);
 }

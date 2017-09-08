@@ -1,0 +1,2 @@
+* SquidJS MVC
+A JS native port of the idea from the ClojureScript Squid framework.

@@ -1,0 +1,63 @@
+#+TITLE: Javascript Databases
+
+* Motivation
+** Normalisation
+**** If you've got an entity that's referred to by several others then a tree structure will lead to duplication
+**** Duplication makes updates a nightmare
+**** Having one canonical version makes updates trivial
+**** If it's flat then you don't even need to bother with path traversal
+** Indexing and query
+**** You start with objects in a list
+**** Then you need to select one in particular so you index by id
+**** But did you just lose your iteration order?
+**** What about if you want to query by another field value
+* Requirements
+** Dashboard
+**** First query to load the user's perferences, then load individual widget data
+**** Each widget should display as it's loaded
+**** Each widget should show individual loading indicators
+**** May need to do inserts dependent on the original state, or current state
+**** Multiple inserts as part of a transaction to avoid premature observation
+* Options
+** [[https://google.github.io/lovefield/][Lovefield]]
+**** Developed by Google
+**** Either in memory or backed by IndexDB
+**** SQL like queries built with builder pattern
+**** Joins, propper indexes, selective attributes
+**** Observable queries
+***** I guess the db basically becomes the state atom
+***** And observable is like having a watcher
+***** Figure out how to cause re-renders with dom-vm
+**** [[https://github.com/google/lovefield/blob/master/demos/todo/README.md][Quick Start]]
+**** [[https://io2015codelabs.appspot.com/codelabs/lovefield#1][Codelab]]
+**** Queries run async to prevent blocking the UI
+***** Means you're immediately in promise world
+** [[http://taffydb.com/][TaffyDB]]
+**** Uses js objects for more complex query operations
+***** I don't see any examples of referring to one column in a query of another
+**** Each db is like a table. Can join across them.
+** [[https://github.com/tonsky/datascript][DataScript]]
+**** Queries are datalog written in strings
+** [[https://pouchdb.com/][pouchdb]]
+**** Syncs to server
+**** Supports async/await?
+**** CouchDB style object queries
+** [[http://lokijs.org/#/][LokiJS]]
+**** Object queries
+** [[https://github.com/kripken/sql.js][SQLite compiled to JS]]
+** [[http://gun.js.org/][Gun]]
+**** Primarily concerned with sync
+** [[https://github.com/agershun/alasql][AlaSQL.js]]
+**** String SQL queries
+**** [[http://alasql.org/][Their own website]] is hideous
+** [[https://github.com/louischatriot/nedb][NeDB]]
+**** Subset of mongo
+* Search
+** Queries
+**** js database
+**** javascript database
+**** javascript immutable database
+**** javascript in memory database
+** Listings
+**** [[https://news.ycombinator.com/item?id=101976721][Lovefield on Hacker News]]
+**** [[https://www.reddit.com/r/javascript/comments/3k8kdf/lovefield_a_javascript_relational_database/][Lovefield on /r/javascript]]

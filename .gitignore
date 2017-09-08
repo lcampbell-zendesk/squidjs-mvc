@@ -1,4 +1,4 @@
 *.pdf
 *.tex
-/bundle.js
+/dist/bundle.js
 /node_modules

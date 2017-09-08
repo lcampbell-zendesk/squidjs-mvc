@@ -2,7 +2,7 @@
   "name": "squidjs",
   "version": "1.0.0",
   "description": "A JS native port of the idea from the ClojureScript Squid framework.",
-  "main": "app.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

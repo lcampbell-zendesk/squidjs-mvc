@@ -1,2 +1,6 @@
 * SquidJS MVC
 A JS native port of the idea from the ClojureScript Squid framework.
+** Todo
+**** TODO Hook up db to view
+**** TODO Have a db observer call vm.update(newData, sync) on each change
+**** TODO Bring in TodoMVC static assets

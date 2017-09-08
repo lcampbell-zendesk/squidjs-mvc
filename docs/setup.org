@@ -1,1 +1,17 @@
-https://gist.github.com/thejmazz/067295d9fb8b22c77be0
+* Setup notes
+** Some gist
+**** https://gist.github.com/thejmazz/067295d9fb8b22c77be0
+** Babel ES2017
+**** https://babeljs.io/docs/plugins/preset-es2017/
+**** Running the install command suggests using babel-preset-env instead
+** babel-preset-env
+*** https://github.com/babel/babel-preset-env
+*** npm install babel-preset-env --save-dev
+*** {"presets": ["env"]}
+** Webpack
+*** https://webpack.js.org/concepts/
+*** https://www.npmjs.com/package/webpack
+**** npm install --save-dev webpack
+** NPM
+**** https://docs.npmjs.com/getting-started/using-a-package.json
+**** npm init

@@ -1,2 +1,4 @@
 *.pdf
 *.tex
+/bundle.js
+/node_modules

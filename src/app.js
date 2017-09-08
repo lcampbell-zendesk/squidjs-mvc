@@ -6,11 +6,11 @@ import seed from './seed';
 import domvm from 'domvm';
 
 async function roundTrip() {
-  var schemaBuilder = lf.schema.create('todo', 1);
+  const schemaBuilder = lf.schema.create('todo', 1);
   createItem(schemaBuilder);
 
-  let db = await schemaBuilder.connect();
-  let item = db.getSchema().table("Item");
+  const db = await schemaBuilder.connect();
+  const item = db.getSchema().table("Item");
 
   await seed(db);
 
@@ -24,17 +24,15 @@ async function roundTrip() {
 roundTrip();
 
 function ui() {
-  var el = domvm.defineElement;
+  const el = domvm.defineElement;
 
-  var HelloView = {
-    render: function(vm, data) {
-      return el("h1", {style: "color: red;"}, "Hello " + data.name);
-    }
-  };
+  function HelloView(vm, data) {
+    return el("h1", {style: "color: red;"}, "Hello " + data.name);
+  }
 
-  var data = {name: "Leon"};
+  const data = {name: "Leon"};
 
-  domvm.createView(HelloView, data).mount(document.body);
+  domvm.createView({render: HelloView}, data).mount(document.body);
 }
 
 ui();

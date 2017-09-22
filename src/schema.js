@@ -5,11 +5,9 @@ export default function schema() {
 
   schemaBuilder.createTable('Item').
     addColumn('id', Type.INTEGER).
-    addColumn('description', Type.STRING).
-    addColumn('deadline', Type.DATE_TIME).
-    addColumn('done', Type.BOOLEAN).
-    addPrimaryKey(['id']).
-    addIndex('idxDeadline', ['deadline'], false, Order.DESC);
+    addColumn('name', Type.STRING).
+    addColumn('complete', Type.BOOLEAN).
+    addPrimaryKey(['id'], true);
 
   return schemaBuilder;
 }

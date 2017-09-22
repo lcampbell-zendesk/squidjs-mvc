@@ -1,12 +1,8 @@
 export default async function seed(db) {
   let item = db.getSchema().table("Item");
 
-  const row = item.createRow({
-    "id": 1,
-    "description": "Get a cup of coffee",
-    "deadline": new Date(),
-    "done": false
-  });
+  const rows = [{"id": 1, "name": "Taste Javascript", "complete": true},
+                {"id": 2, "name": "Buy a unicorn",    "complete": false}];
 
-  return db.insertOrReplace().into(item).values([row]).exec();
+  return db.insertOrReplace().into(item).values(rows.map((r) => item.createRow(r))).exec();
 }

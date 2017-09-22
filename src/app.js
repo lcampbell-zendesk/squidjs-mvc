@@ -9,10 +9,12 @@ async function main() {
   // LOVEFIELD
   const db = await schema().connect();
   const item = db.getSchema().table("Item");
-  const todo = db.select().from(item).where(item.done.eq(false));
+  const todo = db.select().from(item);
 
   // DOMVM
   const vm = domvm.createView({render: TodoApp}, []).mount(document.getElementById("app"));
+
+  throw "foo";
 
   // BOTH
   async function updateDomvm(changes) {

@@ -9096,7 +9096,7 @@ var main = function () {
       };
     }();
 
-    var db, table, todo, vm;
+    var db, item, todo, vm;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -9106,19 +9106,15 @@ var main = function () {
 
           case 2:
             db = _context2.sent;
-            table = db.getSchema().table("Task");
-            todo = db.select().from(table).where(table.complete.eq(false));
+            item = db.getSchema().table("Item");
+            todo = db.select().from(item);
 
             // DOMVM
 
             vm = _domvm2.default.createView({ render: _todoapp2.default }, []).mount(document.getElementById("app"));
+            throw "foo";
 
-
-            db.observe(todo, updateDomvm);
-
-            (0, _seed2.default)(db);
-
-          case 8:
+          case 9:
           case 'end':
             return _context2.stop();
         }
@@ -9172,7 +9168,7 @@ var _lovefield = __webpack_require__(330);
 function schema() {
   var schemaBuilder = lf.schema.create('todo', 1);
 
-  schemaBuilder.createTable('Task').addColumn('id', _lovefield.Type.INTEGER).addColumn('name', _lovefield.Type.STRING).addColumn('complete', _lovefield.Type.BOOLEAN).addPrimaryKey(['id'], true);
+  schemaBuilder.createTable('Item').addColumn('id', _lovefield.Type.INTEGER).addColumn('name', _lovefield.Type.STRING).addColumn('complete', _lovefield.Type.BOOLEAN).addPrimaryKey(['id'], true);
 
   return schemaBuilder;
 }
@@ -9504,14 +9500,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 exports.default = function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(db) {
-    var tasks, table;
+    var item, rows;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            tasks = [{ name: "Taste Javascript", complete: true }, { name: "Buy a unicorn", complete: false }];
-            table = db.getSchema().table("Task");
-            return _context.abrupt("return", db.insertOrReplace().into(table).values(tasks.map(table.createRow)).exec());
+            item = db.getSchema().table("Item");
+            rows = [{ "id": 1, "name": "Taste Javascript", "complete": true }, { "id": 2, "name": "Buy a unicorn", "complete": false }];
+            return _context.abrupt("return", db.insertOrReplace().into(item).values(rows.map(function (r) {
+              return item.createRow(r);
+            })).exec());
 
           case 3:
           case "end":

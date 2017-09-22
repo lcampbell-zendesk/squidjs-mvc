@@ -1,4 +1,5 @@
 *.pdf
 *.tex
-/dist/bundle.js
+/dist/js/app.js
+/dist/js/app.js.map
 /node_modules

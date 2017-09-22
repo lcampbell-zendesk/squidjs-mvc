@@ -1,33 +1,40 @@
-import schema from './schema';
+import { db, initDb } from './schema';
 import seed from './seed';
 import domvm from 'domvm';
 import TodoApp from './views/todoapp';
-
-const el = domvm.defineElement;
+import { op, Order } from 'lovefield';
 
 async function main() {
   // LOVEFIELD
-  const db = await schema().connect();
-  const item = db.getSchema().table("Item");
-  const allQuery = db.select().from(item);
-  const activeQuery = db.select().from(item).where(item.complete.eq(false));
-  const completedQuery = db.select().from(item).where(item.complete.eq(true));
+  await initDb();
+
+  const item           = db.getSchema().table("Item");
+  const notNew         = item.new.eq(false);
+
+  const newTaskQuery   = db.select().from(item).where(item.new.eq(true));
+  const allQuery       = db.select().from(item).where(notNew).orderBy(item.id, Order.ASC);
+  const activeQuery    = db.select().from(item).where(op.and(notNew, item.complete.eq(false)));
+  const completedQuery = db.select().from(item).where(op.and(notNew, item.complete.eq(true)));
 
   // DOMVM
-  const empty = {all: [], active: [], completed: []};
+  const empty = {newTask: {}, all: [], active: [], completed: []};
   const vm = domvm.createView({render: TodoApp}, empty).mount(document.getElementById("app"));
 
   // BOTH
   async function updateDomvm(changes) {
-    const all = allQuery.exec();
-    const active = activeQuery.exec();
+    const newTask   = newTaskQuery.exec();
+    const all       = allQuery.exec();
+    const active    = activeQuery.exec();
     const completed = completedQuery.exec();
 
     const results = {
+      newTask:   (await newTask)[0],
       all:       await all,
       active:    await active,
       completed: await completed
     };
+
+    console.log(results);
 
     vm.update(results, false);
   }

@@ -13,5 +13,8 @@ A JS native port of the idea from the ClojureScript Squid framework.
     CLOSED: [2017-09-22 Fri 14:38]
 *** DONE Add examples as seed data
     CLOSED: [2017-09-22 Fri 14:38]
-*** TODO Have domvm render seed data
+*** DONE Have domvm render seed data
+    CLOSED: [2017-09-22 Fri 18:13]
+*** TODO Try moving all queries to their own NS because they're pure
+*** TODO Helpers for updates?
 *** TODO Work from [[file://docs/todomvc.org][Application Specification]]

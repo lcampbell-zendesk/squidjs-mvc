@@ -1,22 +1,27 @@
 import domvm from 'domvm';
+import { createTask, setNewTaskName } from '../controller';
 
 const el = domvm.defineElement;
 
-export default function TodoApp(vm, { all, active, completed }) {
+export default function TodoApp(vm, { newTask, all, active, completed }) {
   console.log(all);
   return (
     el("section.todoapp",
-       [Header(),
+       [Header(newTask),
         Main(all),
         Footer(completed.length > 0)]));}
 
-function Header() {
+function Header({ name }) {
   return (
     el("header.header", [
       el("h1", ["todos"]),
-      el("input.new-todo",
-         {placeholder: "What needs to be done?",
-          autofocus: true})]));}
+      el("form",
+         {onsubmit: createTask},
+         [el("input.new-todo",
+              {placeholder: "What needs to be done?",
+               autofocus:   true,
+               value:       name,
+               onkeyup:     setNewTaskName})])]));}
 
 function Main(tasks) {
   return (

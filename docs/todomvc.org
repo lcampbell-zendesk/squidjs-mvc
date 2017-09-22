@@ -1,0 +1,50 @@
+* [[https://github.com/tastejs/todomvc-app-template][Template]]
+* [[https://github.com/tastejs/todomvc/blob/master/app-spec.md][Application Specification]]
+** No todos
+*** TODO When there are no todos, #main and #footer should be hidden.
+** New todo
+*** TODO New todos are entered in the input at the top of the app.
+*** TODO The input element should be focused when the page is loaded, preferably by using the autofocus input attribute.
+*** TODO Pressing Enter creates the todo, appends it to the todo list, and clears the input.
+*** TODO Make sure to .trim() the input and then check that it's not empty before creating a new todo.
+** Mark all as complete
+*** TODO This checkbox toggles all the todos to the same state as itself.
+*** TODO Make sure to clear the checked state after the "Clear completed" button is clicked.
+*** TODO The "Mark all as complete" checkbox should also be updated when single todo items are checked/unchecked.
+**** Eg. When all the todos are checked it should also get checked.
+** Item
+*** TODO Clicking the checkbox marks the todo as complete by updating its completed value and toggling the class completed on its parent <li>
+*** TODO Double-clicking the <label> activates editing mode, by toggling the .editing class on its <li>
+*** TODO Hovering over the todo shows the remove button (.destroy)
+** Editing
+*** TODO When editing mode is activated it will hide the other controls and bring forward an input that contains the todo title, which should be focused (.focus()).
+*** TODO The edit should be saved on both blur and enter, and the editing class should be removed.
+*** TODO Make sure to .trim() the input and then check that it's not empty.
+*** TODO If it's empty the todo should instead be destroyed.
+*** TODO If escape is pressed during the edit, the edit state should be left and any changes be discarded.
+** Counter
+*** TODO Displays the number of active todos in a pluralized form.
+*** TODO Make sure the number is wrapped by a <strong> tag.
+*** TODO Also make sure to pluralize the item word correctly: 0 items, 1 item, 2 items. Example: 2 items left
+** Clear completed button
+*** TODO Removes completed todos when clicked.
+*** TODO Should be hidden when there are no completed todos.
+** Persistence
+*** TODO Your app should dynamically persist the todos to localStorage.
+*** TODO If the framework has capabilities for persisting data (e.g. *** Backbone.sync), use that.
+**** Otherwise, use vanilla localStorage.
+*** TODO If possible, use the keys id, title, completed for each item.
+*** TODO Make sure to use this format for the localStorage name: todos-[framework].
+*** TODO Editing mode should not be persisted.
+** Routing
+*** TODO Routing is required for all implementations.
+*** TODO If supported by the framework, use its built-in capabilities.
+**** Otherwise, use the Flatiron Director routing library located in the /assets folder.
+*** TODO The following routes should be implemented:
+**** TODO #/ (all - default)
+**** TODO #/active
+**** TODO #/completed (#!/ is also allowed).
+*** TODO When the route changes, the todo list should be filtered on a model level and the selected class on the filter links should be toggled.
+*** TODO When an item is updated while in a filtered state, it should be updated accordingly.
+**** E.g. if the filter is Active and the item is checked, it should be hidden.
+*** TODO Make sure the active filter is persisted on reload.

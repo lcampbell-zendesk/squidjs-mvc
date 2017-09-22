@@ -3,3 +3,4 @@
 /dist/js/app.js
 /dist/js/app.js.map
 /node_modules
+/dist/bundle.js

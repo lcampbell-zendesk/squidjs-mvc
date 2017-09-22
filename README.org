@@ -7,7 +7,8 @@ A JS native port of the idea from the ClojureScript Squid framework.
 **** TODO Is it slow to have every query re-run for every change?
 *** DONE Bring in TodoMVC static assets
     CLOSED: [2017-09-22 Fri 11:16]
-*** TODO Re-implement HTML as static domvm
+*** DONE Re-implement HTML as static domvm
+    CLOSED: [2017-09-22 Fri 12:10]
 *** TODO Update schema to match todos
 *** TODO Add examples as seed data
 *** TODO Have domvm render seed data

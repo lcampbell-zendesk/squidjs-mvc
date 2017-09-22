@@ -14,13 +14,10 @@ async function main() {
   // DOMVM
   const vm = domvm.createView({render: TodoApp}, []).mount(document.getElementById("app"));
 
-  throw "foo";
-
   // BOTH
   async function updateDomvm(changes) {
     const results = await todo.exec();
     vm.update(results, false);
-    console.log(results);
   }
 
   db.observe(todo, updateDomvm);

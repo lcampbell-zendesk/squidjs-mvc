@@ -1,18 +1,9 @@
 import schema from './schema';
 import seed from './seed';
 import domvm from 'domvm';
+import TodoApp from './views/todoapp';
 
 const el = domvm.defineElement;
-
-function ItemList(vm, data) {
-  return (
-    el("div", [
-      data.length == 0
-        ? el("p", "None")
-        : el("ul", data.map((item) => el("li", item.description)))
-    ])
-  );
-}
 
 async function main() {
   // LOVEFIELD
@@ -21,7 +12,7 @@ async function main() {
   const todo = db.select().from(item).where(item.done.eq(false));
 
   // DOMVM
-  const vm = domvm.createView({render: ItemList}, []).mount(document.body);
+  const vm = domvm.createView({render: TodoApp}, []).mount(document.getElementById("app"));
 
   // BOTH
   async function updateDomvm(changes) {

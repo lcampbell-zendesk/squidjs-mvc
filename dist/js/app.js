@@ -9068,7 +9068,7 @@ var main = function () {
 
             // DOMVM
 
-            vm = _domvm2.default.createView({ render: ItemList }, []).mount(document.body);
+            vm = _domvm2.default.createView({ render: _todoapp2.default }, []).mount(document.getElementById("app"));
 
 
             db.observe(todo, updateDomvm);
@@ -9100,17 +9100,15 @@ var _domvm = __webpack_require__(332);
 
 var _domvm2 = _interopRequireDefault(_domvm);
 
+var _todoapp = __webpack_require__(333);
+
+var _todoapp2 = _interopRequireDefault(_todoapp);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var el = _domvm2.default.defineElement;
-
-function ItemList(vm, data) {
-  return el("div", [data.length == 0 ? el("p", "None") : el("ul", data.map(function (item) {
-    return el("li", item.description);
-  }))]);
-}
 
 main();
 
@@ -9534,6 +9532,56 @@ e=0;e<c;e++){var h=d.tpl(e);h._diff=d.diff(e);b[e]=h;C(h,a,e)}a.body=b}};return 
 this,c=b;c=da(arguments,1).concat(c,c.data);do{var d=b.onemit;if(d=d?d[a]:null){d.apply(b,c);break}}while(b=b.parent());aa[a]&&aa[a].apply(b,c)};t.onemit=null;t.body=function(){return Aa(this.node,[])};ba.defineElementSpread=Ba;ba.defineSvgElementSpread=function(){var a=Ba.apply(null,arguments);a.ns="http://www.w3.org/2000/svg";return a};t._stream=null;var Qa={area:!0,base:!0,br:!0,col:!0,command:!0,embed:!0,hr:!0,img:!0,input:!0,keygen:!0,link:!0,meta:!0,param:!0,source:!0,track:!0,wbr:!0};t.attach=
 function(a){null==this.node&&this._redraw(null,null,!1);Ca(this.node,a);return this};t.html=function(a){null==this.node&&this._redraw(null,null,!1);return Z(this.node,a)};Fa.html=function(a){return Z(this,a)};return ba});
 
+
+/***/ }),
+/* 333 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+   value: true
+});
+exports.default = TodoApp;
+
+var _domvm = __webpack_require__(332);
+
+var _domvm2 = _interopRequireDefault(_domvm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var el = _domvm2.default.defineElement;
+
+function TodoApp(vm, data) {
+   return el("section.todoapp", [Header(), Main(), Footer()]);
+}
+
+function Header() {
+   return el("header.header", [el("h1", ["todos"]), el("input.new-todo", { placeholder: "What needs to be done?",
+      autofocus: true })]);
+}
+
+function Main() {
+   return el("section.main", [el("input#toggle-all.toggle-all", { type: "checkbox" }), el("label", { for: "toggle-all" }, ["Mark all as complete"]), el("ul.todo-list", [Todo({ completed: true,
+      name: "Taste Javascript",
+      edit: "Create a TodoMVC template" }), Todo({ completed: false,
+      name: "Buy a unicorn",
+      edit: "Rule the web" })])]);
+}
+
+function Todo(_ref) {
+   var completed = _ref.completed,
+       name = _ref.name,
+       edit = _ref.edit;
+
+   return el("li", { class: completed ? "completed" : "" }, [el("div.view", [el("input.toggle", { type: "checkbox",
+      checked: completed }), el("label", name), el("button.destroy")]), el("input.edit", { value: edit })]);
+}
+
+function Footer() {
+   return el("footer.footer", [el("span.todo-count", [el("strong", "0"), " item left"]), el("ul.filters", [el("li", [el("a.selected", { href: "#/" }, "All")]), el("li", [el("a", { href: "#/active" }, "Active")]), el("li", [el("a", { href: "#/completed" }, "Completed")])]), el("button.clear-completed", "Clear Completed")]);
+}
 
 /***/ })
 /******/ ]);

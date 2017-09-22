@@ -32,6 +32,9 @@
 **** [[https://io2015codelabs.appspot.com/codelabs/lovefield#1][Codelab]]
 **** Queries run async to prevent blocking the UI
 ***** Means you're immediately in promise world
+**** Experiences:
+***** Async queries are annoying, mean you have to do them all ahead of time
+***** No good API docs
 ** [[http://taffydb.com/][TaffyDB]]
 **** Uses js objects for more complex query operations
 ***** I don't see any examples of referring to one column in a query of another

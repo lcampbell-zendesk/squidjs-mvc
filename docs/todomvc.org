@@ -28,7 +28,8 @@
 *** TODO Also make sure to pluralize the item word correctly: 0 items, 1 item, 2 items. Example: 2 items left
 ** Clear completed button
 *** TODO Removes completed todos when clicked.
-*** TODO Should be hidden when there are no completed todos.
+*** DONE Should be hidden when there are no completed todos.
+    CLOSED: [2017-09-22 Fri 15:29]
 ** Persistence
 *** TODO Your app should dynamically persist the todos to localStorage.
 *** TODO If the framework has capabilities for persisting data (e.g. *** Backbone.sync), use that.

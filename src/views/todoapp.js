@@ -2,12 +2,13 @@ import domvm from 'domvm';
 
 const el = domvm.defineElement;
 
-export default function TodoApp(vm, data) {
+export default function TodoApp(vm, { all, active, completed }) {
+  console.log(all);
   return (
     el("section.todoapp",
        [Header(),
-        Main(),
-        Footer()]));}
+        Main(all),
+        Footer(completed.length > 0)]));}
 
 function Header() {
   return (
@@ -17,7 +18,7 @@ function Header() {
          {placeholder: "What needs to be done?",
           autofocus: true})]));}
 
-function Main() {
+function Main(tasks) {
   return (
     el("section.main",
        [el("input#toggle-all.toggle-all",
@@ -26,27 +27,22 @@ function Main() {
            {for: "toggle-all"},
            ["Mark all as complete"]),
         el("ul.todo-list",
-           [Todo({completed: true,
-                  name: "Taste Javascript",
-                  edit: "Create a TodoMVC template"}),
-            Todo({completed: false,
-                  name: "Buy a unicorn",
-                  edit: "Rule the web" })])]));}
+           tasks.map((task) => Todo(task)))]));}
 
-function Todo({completed, name, edit}) {
+function Todo({complete, name, edit}) {
   return (
     el("li",
-       {class: completed ? "completed" : ""},
+       {class: complete ? "completed" : ""},
        [el("div.view",
            [el("input.toggle",
                {type:    "checkbox",
-                checked: completed}),
+                checked: complete}),
             el("label", name),
             el("button.destroy")]),
         el("input.edit",
            {value: edit})]));}
 
-function Footer() {
+function Footer(anyCompleted) {
   return (
     el("footer.footer",
        [el("span.todo-count",
@@ -65,5 +61,6 @@ function Footer() {
                [el("a",
                    {href: "#/completed"},
                    "Completed")])]),
+        !anyCompleted ? null :
         el("button.clear-completed",
            "Clear Completed")]));}

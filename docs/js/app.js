@@ -9770,9 +9770,9 @@ var clearCompleted = exports.clearCompleted = function () {
   };
 }();
 
-var completeEdit = function () {
+var cancelEdit = function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(id) {
-    var item, tx, editingItems, trimmedEdit;
+    var item, tx, editingItems;
     return regeneratorRuntime.wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
@@ -9788,35 +9788,13 @@ var completeEdit = function () {
 
           case 6:
             editingItems = _context7.sent;
+            _context7.next = 9;
+            return tx.attach(_schema.db.update(item).set(item.editing, false).set(item.edit, editingItems[0].name).where(item.id.eq(id)));
 
-            if (!(editingItems.length == 1)) {
-              _context7.next = 16;
-              break;
-            }
+          case 9:
+            return _context7.abrupt("return", tx.commit());
 
-            trimmedEdit = editingItems[0].edit.trim();
-
-            if (!(trimmedEdit != "")) {
-              _context7.next = 14;
-              break;
-            }
-
-            _context7.next = 12;
-            return tx.attach(_schema.db.update(item).set(item.editing, false).set(item.name, trimmedEdit).where(item.id.eq(id)));
-
-          case 12:
-            _context7.next = 16;
-            break;
-
-          case 14:
-            _context7.next = 16;
-            return tx.attach(_schema.db.delete().from(item).where(item.id.eq(id)));
-
-          case 16:
-            _context7.next = 18;
-            return tx.commit();
-
-          case 18:
+          case 10:
           case "end":
             return _context7.stop();
         }
@@ -9824,8 +9802,67 @@ var completeEdit = function () {
     }, _callee7, this);
   }));
 
-  return function completeEdit(_x7) {
+  return function cancelEdit(_x7) {
     return _ref7.apply(this, arguments);
+  };
+}();
+
+var completeEdit = function () {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(id) {
+    var item, tx, editingItems, trimmedEdit;
+    return regeneratorRuntime.wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            item = _schema.db.getSchema().table("Item");
+            tx = _schema.db.createTransaction();
+            _context8.next = 4;
+            return tx.begin([item]);
+
+          case 4:
+            _context8.next = 6;
+            return tx.attach(_schema.db.select().from(item).where(item.id.eq(id)));
+
+          case 6:
+            editingItems = _context8.sent;
+
+            if (!(editingItems.length == 1)) {
+              _context8.next = 16;
+              break;
+            }
+
+            trimmedEdit = editingItems[0].edit.trim();
+
+            if (!(trimmedEdit != "")) {
+              _context8.next = 14;
+              break;
+            }
+
+            _context8.next = 12;
+            return tx.attach(_schema.db.update(item).set(item.editing, false).set(item.name, trimmedEdit).where(item.id.eq(id)));
+
+          case 12:
+            _context8.next = 16;
+            break;
+
+          case 14:
+            _context8.next = 16;
+            return tx.attach(_schema.db.delete().from(item).where(item.id.eq(id)));
+
+          case 16:
+            _context8.next = 18;
+            return tx.commit();
+
+          case 18:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8, this);
+  }));
+
+  return function completeEdit(_x8) {
+    return _ref8.apply(this, arguments);
   };
 }();
 
@@ -9994,12 +10031,6 @@ function startEditing(id) {
   }();
 }
 
-function cancelEdit(id) {
-  var item = _schema.db.getSchema().table("Item");
-
-  return _schema.db.update(item).set(item.editing, false).where(item.id.eq(id)).exec();
-}
-
 function updateEdit(id, event) {
   var edit = event.target.value;
   var item = _schema.db.getSchema().table("Item");
@@ -10008,36 +10039,36 @@ function updateEdit(id, event) {
 
 function editInput(id) {
   return function () {
-    var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(event) {
-      return regeneratorRuntime.wrap(function _callee8$(_context8) {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(event) {
+      return regeneratorRuntime.wrap(function _callee9$(_context9) {
         while (1) {
-          switch (_context8.prev = _context8.next) {
+          switch (_context9.prev = _context9.next) {
             case 0:
-              _context8.t0 = event.code;
-              _context8.next = _context8.t0 === "Escape" ? 3 : _context8.t0 === "Enter" ? 5 : 7;
+              _context9.t0 = event.code;
+              _context9.next = _context9.t0 === "Escape" ? 3 : _context9.t0 === "Enter" ? 5 : 7;
               break;
 
             case 3:
               cancelEdit(id);
-              return _context8.abrupt("break", 8);
+              return _context9.abrupt("break", 8);
 
             case 5:
               completeEdit(id);
-              return _context8.abrupt("break", 8);
+              return _context9.abrupt("break", 8);
 
             case 7:
               updateEdit(id, event);
 
             case 8:
             case "end":
-              return _context8.stop();
+              return _context9.stop();
           }
         }
-      }, _callee8, this);
+      }, _callee9, this);
     }));
 
-    return function (_x8) {
-      return _ref8.apply(this, arguments);
+    return function (_x9) {
+      return _ref9.apply(this, arguments);
     };
   }();
 }

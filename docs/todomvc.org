@@ -1,7 +1,8 @@
 * [[https://github.com/tastejs/todomvc-app-template][Template]]
 * [[https://github.com/tastejs/todomvc/blob/master/app-spec.md][Application Specification]]
 ** No todos
-*** TODO When there are no todos, #main and #footer should be hidden.
+*** DONE When there are no todos, #main and #footer should be hidden.
+    CLOSED: [2017-10-06 Fri 11:59]
 ** New todo
 *** DONE New todos are entered in the input at the top of the app.
     CLOSED: [2017-10-06 Fri 10:49]
@@ -17,7 +18,8 @@
 *** TODO The "Mark all as complete" checkbox should also be updated when single todo items are checked/unchecked.
 **** Eg. When all the todos are checked it should also get checked.
 ** Item
-*** TODO Clicking the checkbox marks the todo as complete by updating its completed value and toggling the class completed on its parent <li>
+*** DONE Clicking the checkbox marks the todo as complete by updating its completed value and toggling the class completed on its parent <li>
+    CLOSED: [2017-10-06 Fri 11:52]
 *** TODO Double-clicking the <label> activates editing mode, by toggling the .editing class on its <li>
 *** DONE Hovering over the todo shows the remove button (.destroy)
     CLOSED: [2017-10-06 Fri 11:38]
@@ -35,7 +37,8 @@
 *** DONE Also make sure to pluralize the item word correctly: 0 items, 1 item, 2 items. Example: 2 items left
     CLOSED: [2017-10-06 Fri 11:29]
 ** Clear completed button
-*** TODO Removes completed todos when clicked.
+*** DONE Removes completed todos when clicked.
+    CLOSED: [2017-10-06 Fri 11:55]
 *** DONE Should be hidden when there are no completed todos.
     CLOSED: [2017-09-22 Fri 15:29]
 ** Persistence

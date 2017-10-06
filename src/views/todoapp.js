@@ -1,5 +1,5 @@
 import domvm from 'domvm';
-import { createTask, setNewTaskName, removeTask, toggleCompletion } from '../controller';
+import { createTask, setNewTaskName, removeTask, toggleCompletion, clearCompleted } from '../controller';
 
 const el = domvm.defineElement;
 
@@ -8,8 +8,9 @@ export default function TodoApp(vm, { newTask, all, active, completed }) {
   return (
     el("section.todoapp",
        [Header(newTask),
-        Main(all),
-        Footer(active.length, completed.length > 0)]));}
+        all.length == 0 ? [] :
+        [Main(all),
+         Footer(active.length, completed.length > 0)]]));}
 
 function Header({ name }) {
   return (
@@ -74,4 +75,5 @@ function Footer(activeCount, anyCompleted) {
                    "Completed")])]),
         !anyCompleted ? null :
         el("button.clear-completed",
+           {onclick: clearCompleted},
            "Clear Completed")]));}

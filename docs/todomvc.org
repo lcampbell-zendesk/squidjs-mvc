@@ -3,10 +3,14 @@
 ** No todos
 *** TODO When there are no todos, #main and #footer should be hidden.
 ** New todo
-*** TODO New todos are entered in the input at the top of the app.
-*** TODO The input element should be focused when the page is loaded, preferably by using the autofocus input attribute.
-*** TODO Pressing Enter creates the todo, appends it to the todo list, and clears the input.
-*** TODO Make sure to .trim() the input and then check that it's not empty before creating a new todo.
+*** DONE New todos are entered in the input at the top of the app.
+    CLOSED: [2017-10-06 Fri 10:49]
+*** DONE The input element should be focused when the page is loaded, preferably by using the autofocus input attribute.
+    CLOSED: [2017-10-06 Fri 10:50]
+*** DONE Pressing Enter creates the todo, appends it to the todo list, and clears the input.
+    CLOSED: [2017-10-06 Fri 10:50]
+*** DONE Make sure to .trim() the input and then check that it's not empty before creating a new todo.
+    CLOSED: [2017-10-06 Fri 11:15]
 ** Mark all as complete
 *** TODO This checkbox toggles all the todos to the same state as itself.
 *** TODO Make sure to clear the checked state after the "Clear completed" button is clicked.

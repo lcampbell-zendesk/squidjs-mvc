@@ -7,12 +7,29 @@ export async function createTask(event) {
 
   const tx = db.createTransaction();
   await tx.begin([item]);
-  await tx.attach(db.update(item).set(item.new, false).where(item.new.eq(true)));
 
-  const row = item.createRow({name: "", complete: false, new: true});
-  await tx.attach(db.insertOrReplace().into(item).values([row]));
+  const newItem = await tx.attach(db
+                                  .select()
+                                  .from(item)
+                                  .where(item.new.eq(true)));
+  const trimmedName = newItem[0].name.trim();
 
-  console.log("about to commit");
+  if(trimmedName != "") {
+    await tx.attach(db
+                    .update(item)
+                    .set(item.new, false)
+                    .set(item.name, trimmedName)
+                    .where(item.new.eq(true)));
+
+    const row = item.createRow({name: "",
+                                complete: false,
+                                new: true});
+    await tx.attach(db
+                    .insertOrReplace()
+                    .into(item)
+                    .values([row]));
+  }
+
   return tx.commit();
 }
 
@@ -20,5 +37,9 @@ export function setNewTaskName(event) {
   event.preventDefault();
   const name = event.target.value;
   const item = db.getSchema().table("Item");
-  return db.update(item).set(item.name, name).where(item.new.eq(true)).exec();
+  return db
+    .update(item)
+    .set(item.name, name)
+    .where(item.new.eq(true))
+    .exec();
 }

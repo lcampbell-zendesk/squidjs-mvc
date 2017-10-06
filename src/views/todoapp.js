@@ -32,7 +32,7 @@ function Main(tasks) {
            {for: "toggle-all"},
            ["Mark all as complete"]),
         el("ul.todo-list",
-           tasks.map((task) => Todo(task)))]));}
+           tasks.map(Todo))]));}
 
 function Todo({complete, name, edit}) {
   return (

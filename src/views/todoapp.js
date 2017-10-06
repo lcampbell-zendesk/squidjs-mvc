@@ -1,6 +1,6 @@
 import domvm from 'domvm';
 import { createTask, setNewTaskName, removeTask, toggleCompletion,
-         clearCompleted, toggleAll, startEditing } from '../controller';
+         clearCompleted, toggleAll, startEditing, editInput } from '../controller';
 
 const el = domvm.defineElement;
 
@@ -53,7 +53,8 @@ function Todo({id, complete, name, editing, edit}) {
             el("button.destroy",
                {onclick: removeTask(id)})]),
         el("input.edit",
-           {value: edit})]));}
+           {value: edit,
+            onkeyup: editInput(id)})]));}
 
 function pluralise(count, noun) {
   return noun + (count !== 1 ? 's' : '');

@@ -118,3 +118,29 @@ export function startEditing(id) {
     }, 100);
   };
 }
+
+function cancelEdit(id) {
+  const item = db.getSchema().table("Item");
+
+  return db
+    .update(item)
+    .set(item.editing, false)
+    .where(item.id.eq(id)).exec();
+}
+
+function completeEdit(id) {
+  console.log("completing your edit", id);
+}
+
+export function editInput(id) {
+  return async function(event) {
+    switch(event.code) {
+    case "Escape":
+      cancelEdit(id);
+      break;
+    case "Enter":
+      completeEdit(id);
+      break;
+    }
+  };
+}

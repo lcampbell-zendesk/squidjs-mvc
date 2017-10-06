@@ -31,7 +31,8 @@
 *** DONE Hovering over the todo shows the remove button (.destroy)
     CLOSED: [2017-10-06 Fri 11:38]
 ** Editing
-*** TODO When editing mode is activated it will hide the other controls and bring forward an input that contains the todo title, which should be focused (.focus()).
+*** DONE When editing mode is activated it will hide the other controls and bring forward an input that contains the todo title, which should be focused (.focus()).
+    CLOSED: [2017-10-06 Fri 15:23]
 *** TODO The edit should be saved on both blur and enter, and the editing class should be removed.
 *** TODO Make sure to .trim() the input and then check that it's not empty.
 *** TODO If it's empty the todo should instead be destroyed.

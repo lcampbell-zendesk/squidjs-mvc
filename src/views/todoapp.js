@@ -25,7 +25,6 @@ function Header({ name }) {
                onkeyup:     setNewTaskName})])]));}
 
 function Main(tasks, anyActive) {
-  console.log(anyActive);
   return (
     el("section.main",
        [el("input#toggle-all.toggle-all",
@@ -39,7 +38,6 @@ function Main(tasks, anyActive) {
            tasks.map(Todo))]));}
 
 function Todo({id, complete, name, editing, edit}) {
-  console.log("kittens");
   return (
     el("li",
        {class: complete ? "completed" : null +

@@ -102,10 +102,19 @@ export function startEditing(id) {
 
     await tx.attach(db
                     .update(item)
+                    .set(item.editing, false));
+
+    await tx.attach(db
+                    .update(item)
                     .set(item.editing, true)
                     .set(item.edit, editingItem[0].name)
                     .where(item.id.eq(id)));
 
-    return tx.commit();
+    await tx.commit();
+
+    // This is super gross
+    setTimeout(function() {
+      event.target.parentElement.nextElementSibling.focus();
+    }, 100);
   };
 }

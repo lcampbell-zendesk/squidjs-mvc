@@ -8,6 +8,7 @@ export function schema() {
   schemaBuilder.createTable('Item').
     addColumn('id',       Type.INTEGER).
     addColumn('name',     Type.STRING).
+    addColumn('edit',     Type.STRING).
     addColumn('complete', Type.BOOLEAN).
     addColumn('editing',  Type.BOOLEAN).
     addColumn('new',      Type.BOOLEAN).

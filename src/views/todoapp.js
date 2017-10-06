@@ -1,6 +1,6 @@
 import domvm from 'domvm';
 import { createTask, setNewTaskName, removeTask, toggleCompletion,
-         clearCompleted, toggleAll } from '../controller';
+         clearCompleted, toggleAll, startEditing } from '../controller';
 
 const el = domvm.defineElement;
 
@@ -38,16 +38,20 @@ function Main(tasks, anyActive) {
         el("ul.todo-list",
            tasks.map(Todo))]));}
 
-function Todo({id, complete, name, edit}) {
+function Todo({id, complete, name, editing, edit}) {
+  console.log("kittens");
   return (
     el("li",
-       {class: complete ? "completed" : ""},
+       {class: complete ? "completed" : null +
+        editing ? "editing" : null},
        [el("div.view",
            [el("input.toggle",
                {type:    "checkbox",
                 checked: complete,
                 onchange: toggleCompletion(id)}),
-            el("label", name),
+            el("label",
+               {ondblclick: startEditing(id)},
+               name),
             el("button.destroy",
                {onclick: removeTask(id)})]),
         el("input.edit",

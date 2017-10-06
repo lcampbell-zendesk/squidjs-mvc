@@ -26,7 +26,8 @@
 ** Item
 *** DONE Clicking the checkbox marks the todo as complete by updating its completed value and toggling the class completed on its parent <li>
     CLOSED: [2017-10-06 Fri 11:52]
-*** TODO Double-clicking the <label> activates editing mode, by toggling the .editing class on its <li>
+*** DONE Double-clicking the <label> activates editing mode, by toggling the .editing class on its <li>
+    CLOSED: [2017-10-06 Fri 14:55]
 *** DONE Hovering over the todo shows the remove button (.destroy)
     CLOSED: [2017-10-06 Fri 11:38]
 ** Editing

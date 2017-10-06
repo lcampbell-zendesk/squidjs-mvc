@@ -22,6 +22,7 @@ export async function createTask(event) {
                     .where(item.new.eq(true)));
 
     const row = item.createRow({name: "",
+                                edit: "",
                                 complete: false,
                                 editing: false,
                                 new: true});
@@ -85,4 +86,26 @@ export function toggleAll(to) {
 export async function clearCompleted(event) {
   const item = db.getSchema().table("Item");
   await db.delete().from(item).where(item.complete.eq(true)).exec();
+}
+
+export function startEditing(id) {
+  return async function(event) {
+    const item = db.getSchema().table("Item");
+
+    const tx = db.createTransaction();
+    await tx.begin([item]);
+
+    const editingItem = await tx.attach(db
+                                    .select()
+                                    .from(item)
+                                    .where(item.id.eq(id)));
+
+    await tx.attach(db
+                    .update(item)
+                    .set(item.editing, true)
+                    .set(item.edit, editingItem[0].name)
+                    .where(item.id.eq(id)));
+
+    return tx.commit();
+  };
 }

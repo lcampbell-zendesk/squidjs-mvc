@@ -43,3 +43,11 @@ export function setNewTaskName(event) {
     .where(item.new.eq(true))
     .exec();
 }
+
+export function removeTask(id) {
+  return async function(event) {
+    event.preventDefault();
+    const item = db.getSchema().table("Item");
+    await db.delete().from(item).where(item.id.eq(id)).exec();
+  };
+}

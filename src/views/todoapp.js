@@ -1,5 +1,5 @@
 import domvm from 'domvm';
-import { createTask, setNewTaskName } from '../controller';
+import { createTask, setNewTaskName, removeTask } from '../controller';
 
 const el = domvm.defineElement;
 
@@ -34,7 +34,7 @@ function Main(tasks) {
         el("ul.todo-list",
            tasks.map(Todo))]));}
 
-function Todo({complete, name, edit}) {
+function Todo({id, complete, name, edit}) {
   return (
     el("li",
        {class: complete ? "completed" : ""},
@@ -43,7 +43,8 @@ function Todo({complete, name, edit}) {
                {type:    "checkbox",
                 checked: complete}),
             el("label", name),
-            el("button.destroy")]),
+            el("button.destroy",
+               {onclick: removeTask(id)})]),
         el("input.edit",
            {value: edit})]));}
 

@@ -4,7 +4,6 @@ import { createTask, setNewTaskName, removeTask, toggleCompletion, clearComplete
 const el = domvm.defineElement;
 
 export default function TodoApp(vm, { newTask, all, active, completed }) {
-  console.log(all);
   return (
     el("section.todoapp",
        [Header(newTask),

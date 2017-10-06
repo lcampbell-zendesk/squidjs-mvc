@@ -34,8 +34,6 @@ async function main() {
       completed: await completed
     };
 
-    console.log(results);
-
     vm.update(results, false);
   }
 

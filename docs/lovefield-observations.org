@@ -1,0 +1,7 @@
+* Having to to ~await schema().connect()~ means you can't write queries as data
+** They have to have access to an object that's initialised asyncronously
+* Transactions are kind of verbose
+** And initially difficult to get working
+* Only allowing async queries is a pain and overkill
+** Means we can't query the db as part of the render fn
+** Instead have to have render triggered by queries

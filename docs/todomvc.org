@@ -27,19 +27,26 @@
 *** TODO If it's empty the todo should instead be destroyed.
 *** TODO If escape is pressed during the edit, the edit state should be left and any changes be discarded.
 ** Counter
-*** TODO Displays the number of active todos in a pluralized form.
-*** TODO Make sure the number is wrapped by a <strong> tag.
-*** TODO Also make sure to pluralize the item word correctly: 0 items, 1 item, 2 items. Example: 2 items left
+*** DONE Displays the number of active todos in a pluralized form.
+    CLOSED: [2017-10-06 Fri 11:29]
+*** DONE Make sure the number is wrapped by a <strong> tag.
+    CLOSED: [2017-10-06 Fri 11:29]
+*** DONE Also make sure to pluralize the item word correctly: 0 items, 1 item, 2 items. Example: 2 items left
+    CLOSED: [2017-10-06 Fri 11:29]
 ** Clear completed button
 *** TODO Removes completed todos when clicked.
 *** DONE Should be hidden when there are no completed todos.
     CLOSED: [2017-09-22 Fri 15:29]
 ** Persistence
-*** TODO Your app should dynamically persist the todos to localStorage.
-*** TODO If the framework has capabilities for persisting data (e.g. *** Backbone.sync), use that.
+*** DONE Your app should dynamically persist the todos to localStorage.
+    CLOSED: [2017-10-06 Fri 11:19]
+*** DONE If the framework has capabilities for persisting data (e.g. *** Backbone.sync), use that.
+    CLOSED: [2017-10-06 Fri 11:19]
 **** Otherwise, use vanilla localStorage.
-*** TODO If possible, use the keys id, title, completed for each item.
-*** TODO Make sure to use this format for the localStorage name: todos-[framework].
+*** DONE If possible, use the keys id, title, completed for each item.
+    CLOSED: [2017-10-06 Fri 11:19]
+*** DONE Make sure to use this format for the localStorage name: todos-[framework].
+    CLOSED: [2017-10-06 Fri 11:19]
 *** TODO Editing mode should not be persisted.
 ** Routing
 *** TODO Routing is required for all implementations.

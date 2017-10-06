@@ -9,7 +9,7 @@ export default function TodoApp(vm, { newTask, all, active, completed }) {
     el("section.todoapp",
        [Header(newTask),
         Main(all),
-        Footer(completed.length > 0)]));}
+        Footer(active.length, completed.length > 0)]));}
 
 function Header({ name }) {
   return (
@@ -47,12 +47,16 @@ function Todo({complete, name, edit}) {
         el("input.edit",
            {value: edit})]));}
 
-function Footer(anyCompleted) {
+function pluralise(count, noun) {
+  return noun + (count !== 1 ? 's' : '');
+}
+
+function Footer(activeCount, anyCompleted) {
   return (
     el("footer.footer",
        [el("span.todo-count",
-           [el("strong", "0"),
-            " item left"]),
+           [el("strong", activeCount),
+            " ", pluralise(activeCount, "item"), " left"]),
         el("ul.filters",
            [el("li",
                [el("a.selected",

@@ -3,8 +3,8 @@ import { db } from './schema';
 // data: {"id": 2, "name": "Buy a unicorn", "complete": false}
 export async function createTask(event) {
   event.preventDefault();
-  const item = db.getSchema().table("Item");
 
+  const item = db.getSchema().table("Item");
   const tx = db.createTransaction();
   await tx.begin([item]);
 
@@ -35,6 +35,7 @@ export async function createTask(event) {
 
 export function setNewTaskName(event) {
   event.preventDefault();
+
   const name = event.target.value;
   const item = db.getSchema().table("Item");
   return db
@@ -47,7 +48,28 @@ export function setNewTaskName(event) {
 export function removeTask(id) {
   return async function(event) {
     event.preventDefault();
+
     const item = db.getSchema().table("Item");
     await db.delete().from(item).where(item.id.eq(id)).exec();
+  };
+}
+
+export function toggleCompletion(id) {
+  return async function(event) {
+    const item = db.getSchema().table("Item");
+    const tx = db.createTransaction();
+    await tx.begin([item]);
+
+    const togglingItems = await tx.attach(db
+                                         .select()
+                                         .from(item)
+                                         .where(item.id.eq(id)));
+
+    await tx.attach(db
+                    .update(item)
+                    .set(item.complete, !togglingItems[0].complete)
+                    .where(item.id.eq(id)));
+
+    return tx.commit();
   };
 }

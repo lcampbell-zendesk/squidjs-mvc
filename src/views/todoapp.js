@@ -1,5 +1,5 @@
 import domvm from 'domvm';
-import { createTask, setNewTaskName, removeTask } from '../controller';
+import { createTask, setNewTaskName, removeTask, toggleCompletion } from '../controller';
 
 const el = domvm.defineElement;
 
@@ -41,7 +41,8 @@ function Todo({id, complete, name, edit}) {
        [el("div.view",
            [el("input.toggle",
                {type:    "checkbox",
-                checked: complete}),
+                checked: complete,
+                onchange: toggleCompletion(id)}),
             el("label", name),
             el("button.destroy",
                {onclick: removeTask(id)})]),

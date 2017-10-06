@@ -128,8 +128,45 @@ function cancelEdit(id) {
     .where(item.id.eq(id)).exec();
 }
 
-function completeEdit(id) {
-  console.log("completing your edit", id);
+async function completeEdit(id) {
+  const item = db.getSchema().table("Item");
+
+  const tx = db.createTransaction();
+  await tx.begin([item]);
+
+  const editingItems = await tx.attach(db
+                                       .select()
+                                       .from(item)
+                                       .where(item.id.eq(id)));
+
+  if(editingItems.length == 1) {
+    const trimmedEdit = editingItems[0].edit.trim();
+
+    if (trimmedEdit != "") {
+      await tx.attach(db
+                      .update(item)
+                      .set(item.editing, false)
+                      .set(item.name, trimmedEdit)
+                      .where(item.id.eq(id)));
+    } else {
+      await tx.attach(db
+                      .delete()
+                      .from(item)
+                      .where(item.id.eq(id)));
+    }
+  }
+
+  await tx.commit();
+}
+
+export function updateEdit(id, event) {
+  const edit = event.target.value;
+  const item = db.getSchema().table("Item");
+  return db
+    .update(item)
+    .set(item.edit, edit)
+    .where(item.id.eq(id))
+    .exec();
 }
 
 export function editInput(id) {
@@ -141,6 +178,14 @@ export function editInput(id) {
     case "Enter":
       completeEdit(id);
       break;
+    default:
+      updateEdit(id, event);
     }
+  };
+}
+
+export function blurEdit(id) {
+  return function(event) {
+    completeEdit(id);
   };
 }

@@ -10,3 +10,5 @@
 ** Having a 'new' todo kind of works
 *** Though there are attributes of it that it never really makes use of
 ** But no equivilent for the select all button
+* Quick user input can cause concurrency issues
+** Typing loses events as they're over-written

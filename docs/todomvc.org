@@ -33,10 +33,14 @@
 ** Editing
 *** DONE When editing mode is activated it will hide the other controls and bring forward an input that contains the todo title, which should be focused (.focus()).
     CLOSED: [2017-10-06 Fri 15:23]
-*** TODO The edit should be saved on both blur and enter, and the editing class should be removed.
-*** TODO Make sure to .trim() the input and then check that it's not empty.
-*** TODO If it's empty the todo should instead be destroyed.
-*** TODO If escape is pressed during the edit, the edit state should be left and any changes be discarded.
+*** DONE The edit should be saved on both blur and enter, and the editing class should be removed.
+    CLOSED: [2017-10-06 Fri 16:20]
+*** DONE Make sure to .trim() the input and then check that it's not empty.
+    CLOSED: [2017-10-06 Fri 16:24]
+*** DONE If it's empty the todo should instead be destroyed.
+    CLOSED: [2017-10-06 Fri 16:24]
+*** DONE If escape is pressed during the edit, the edit state should be left and any changes be discarded.
+    CLOSED: [2017-10-06 Fri 15:54]
 ** Counter
 *** DONE Displays the number of active todos in a pluralized form.
     CLOSED: [2017-10-06 Fri 11:29]

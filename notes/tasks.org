@@ -1,0 +1,20 @@
+* SquidJS MVC
+A JS native port of the idea from the ClojureScript Squid framework.
+** Todo
+*** TODO Figure out a more general data transformation pipeline
+**** TODO Is there a way we can set an observer at the schema level rather than query?
+**** TODO Can we construct trees of immutable data that match the general view heirarchy?
+**** TODO Is it slow to have every query re-run for every change?
+*** DONE Bring in TodoMVC static assets
+    CLOSED: [2017-09-22 Fri 11:16]
+*** DONE Re-implement HTML as static domvm
+    CLOSED: [2017-09-22 Fri 12:10]
+*** DONE Update schema to match todos
+    CLOSED: [2017-09-22 Fri 14:38]
+*** DONE Add examples as seed data
+    CLOSED: [2017-09-22 Fri 14:38]
+*** DONE Have domvm render seed data
+    CLOSED: [2017-09-22 Fri 18:13]
+*** TODO Try moving all queries to their own NS because they're pure
+*** TODO Helpers for updates?
+*** TODO Work from [[file://docs/todomvc.org][Application Specification]]

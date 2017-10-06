@@ -74,6 +74,13 @@ export function toggleCompletion(id) {
   };
 }
 
+export function toggleAll(to) {
+  return async function(_event) {
+    const item = db.getSchema().table("Item");
+    await db.update(item).set(item.complete, to).where(item.new.eq(false)).exec();
+  };
+}
+
 export async function clearCompleted(event) {
   const item = db.getSchema().table("Item");
   await db.delete().from(item).where(item.complete.eq(true)).exec();

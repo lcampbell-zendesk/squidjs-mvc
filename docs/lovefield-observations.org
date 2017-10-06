@@ -5,3 +5,8 @@
 * Only allowing async queries is a pain and overkill
 ** Means we can't query the db as part of the render fn
 ** Instead have to have render triggered by queries
+* Tables aren't a good way of storing individual elements
+** Could end up building an EAV representation on top
+** Having a 'new' todo kind of works
+*** Though there are attributes of it that it never really makes use of
+** But no equivilent for the select all button

@@ -1,5 +1,6 @@
 import domvm from 'domvm';
-import { createTask, setNewTaskName, removeTask, toggleCompletion, clearCompleted } from '../controller';
+import { createTask, setNewTaskName, removeTask, toggleCompletion,
+         clearCompleted, toggleAll } from '../controller';
 
 const el = domvm.defineElement;
 
@@ -8,7 +9,7 @@ export default function TodoApp(vm, { newTask, all, active, completed }) {
     el("section.todoapp",
        [Header(newTask),
         all.length == 0 ? [] :
-        [Main(all),
+        [Main(all, active.length > 0),
          Footer(active.length, completed.length > 0)]]));}
 
 function Header({ name }) {
@@ -23,11 +24,14 @@ function Header({ name }) {
                value:       name,
                onkeyup:     setNewTaskName})])]));}
 
-function Main(tasks) {
+function Main(tasks, anyActive) {
+  console.log(anyActive);
   return (
     el("section.main",
        [el("input#toggle-all.toggle-all",
-           {type: "checkbox"}),
+           {type: "checkbox",
+            checked: !anyActive,
+            onclick: toggleAll(anyActive)}),
         el("label",
            {for: "toggle-all"},
            ["Mark all as complete"]),

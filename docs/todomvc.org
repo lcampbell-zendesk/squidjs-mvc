@@ -13,10 +13,16 @@
 *** DONE Make sure to .trim() the input and then check that it's not empty before creating a new todo.
     CLOSED: [2017-10-06 Fri 11:15]
 ** Mark all as complete
-*** TODO This checkbox toggles all the todos to the same state as itself.
-*** TODO Make sure to clear the checked state after the "Clear completed" button is clicked.
-*** TODO The "Mark all as complete" checkbox should also be updated when single todo items are checked/unchecked.
+*** DONE This checkbox toggles all the todos to the same state as itself.
+    CLOSED: [2017-10-06 Fri 13:56]
+*** DONE Make sure to clear the checked state after the "Clear completed" button is clicked.
+    CLOSED: [2017-10-06 Fri 13:52]
+*** DONE The "Mark all as complete" checkbox should also be updated when single todo items are checked/unchecked.
+    CLOSED: [2017-10-06 Fri 13:52]
 **** Eg. When all the todos are checked it should also get checked.
+**** When there are any unchecked todos it should be unchecked.
+**** If it is unchecked clicking it will cause all todos to become checked
+**** If it is checked clicking it will cause all todos to become unchecked
 ** Item
 *** DONE Clicking the checkbox marks the todo as complete by updating its completed value and toggling the class completed on its parent <li>
     CLOSED: [2017-10-06 Fri 11:52]

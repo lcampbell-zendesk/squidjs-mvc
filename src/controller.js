@@ -119,13 +119,24 @@ export function startEditing(id) {
   };
 }
 
-function cancelEdit(id) {
+async function cancelEdit(id) {
   const item = db.getSchema().table("Item");
 
-  return db
-    .update(item)
-    .set(item.editing, false)
-    .where(item.id.eq(id)).exec();
+  const tx = db.createTransaction();
+  await tx.begin([item]);
+
+  const editingItems = await tx.attach(db
+                                      .select()
+                                      .from(item)
+                                      .where(item.id.eq(id)));
+
+  await tx.attach(db
+                  .update(item)
+                  .set(item.editing, false)
+                  .set(item.edit, editingItems[0].name)
+                  .where(item.id.eq(id)));
+
+  return tx.commit();
 }
 
 async function completeEdit(id) {

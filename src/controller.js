@@ -23,6 +23,7 @@ export async function createTask(event) {
 
     const row = item.createRow({name: "",
                                 complete: false,
+                                editing: false,
                                 new: true});
     await tx.attach(db
                     .insertOrReplace()

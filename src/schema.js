@@ -9,6 +9,7 @@ export function schema() {
     addColumn('id',       Type.INTEGER).
     addColumn('name',     Type.STRING).
     addColumn('complete', Type.BOOLEAN).
+    addColumn('editing',  Type.BOOLEAN).
     addColumn('new',      Type.BOOLEAN).
     addPrimaryKey(['id'], true);
 

@@ -1,3 +1,7 @@
+This is an implementation of [[http://todomvc.com/][TodoMVC]]. Using [[https://github.com/leeoniya/domvm][domvm]] and [[https://github.com/google/lovefield][Lovefield]].
+
+If you'd like to see it in action there's a [[https://lcampbell-zendesk.github.io/squidjs-mvc/][Live demo]].
+
 * SquidJS MVC
 A JS native port of the idea from the ClojureScript Squid framework.
 ** Todo

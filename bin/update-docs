@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Index has been customised to match these paths
+# cp dist/index.html docs/index.html
+
+cp ./node_modules/todomvc-common/base.css docs/css/base.css
+cp ./node_modules/todomvc-common/base.js docs/js/base.js
+cp ./dist/js/app.js docs/js/app.js
+cp ./node_modules/todomvc-app-css/index.css docs/css/index.css
